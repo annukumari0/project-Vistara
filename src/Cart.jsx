@@ -1,36 +1,8 @@
 import React, { useState } from 'react';
+import { useCart } from './context/CartContext'
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: 'Product 1',
-      price: 1200,
-      quantity: 1,
-      image: 'https://via.placeholder.com/80',
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      price: 800,
-      quantity: 2,
-      image: 'https://via.placeholder.com/80',
-    },
-  ]);
-
-  const updateQuantity = (id, change) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + change) }
-          : item
-      )
-    );
-  };
-
-  const removeItem = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-  };
+  const { cartItems, updateQuantity, removeItem } = useCart();
 
   const getTotal = () =>
     cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);

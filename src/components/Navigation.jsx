@@ -4,9 +4,11 @@ import logo from "../assets/logo.png";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
+import { useCart } from '../context/CartContext';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {cartItems} = useCart();
 
   return (
     <nav className="bg-black text-white shadow-md">
@@ -37,7 +39,7 @@ const Navigation = () => {
           <Link to="/cart" className="relative">
             <FaShoppingCart size={20} />
             <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1.5 rounded-full">
-              3 {/* Replace with dynamic cart count */}
+              {cartItems?.length}
             </span>
           </Link>
 
